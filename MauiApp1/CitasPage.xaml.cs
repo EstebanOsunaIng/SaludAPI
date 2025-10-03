@@ -1,27 +1,23 @@
-using SaludAPI.Models;
-using SaludAPI.Services;
+using MauiApp1.Models;
+using MauiApp1.Services;
 
-namespace SaludAPI;
-
-public partial class CitasPage : ContentPage
+namespace MauiApp1
 {
-    private SupabaseService _service;
-
-    public CitasPage()
+    public partial class CitasPage : ContentPage
     {
-        InitializeComponent();
-        _service = new SupabaseService();
-    }
+        private readonly SupabaseService _supabaseService;
 
-    protected override async void OnAppearing()
-    {
-        base.OnAppearing();
-        var citas = await _service.GetCitasAsync();
-        CitasCollection.ItemsSource = citas;
-    }
+        public CitasPage()
+        {
+            InitializeComponent();
+            _supabaseService = new SupabaseService();
+        }
 
-    private async void OnNuevaCitaClicked(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new NuevaCitaPage());
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            var citas = await _supabaseService.ObtenerCitasAsync();
+            CitasListView.ItemsSource = citas;
+        }
     }
 }

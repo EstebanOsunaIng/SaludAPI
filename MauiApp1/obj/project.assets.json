@@ -36515,6 +36515,7 @@
       "Microsoft.Maui.Controls >= 9.0.82",
       "Microsoft.NET.ILLink.Tasks >= 9.0.1",
       "Supabase >= 1.1.1",
+      "postgrest-csharp >= 3.5.1",
       "supabase-csharp >= 0.16.2"
     ],
     "net9.0-ios18.5": [
@@ -36522,6 +36523,7 @@
       "Microsoft.Maui.Controls >= 9.0.82",
       "Microsoft.NET.ILLink.Tasks >= 9.0.1",
       "Supabase >= 1.1.1",
+      "postgrest-csharp >= 3.5.1",
       "supabase-csharp >= 0.16.2"
     ],
     "net9.0-maccatalyst18.5": [
@@ -36529,12 +36531,14 @@
       "Microsoft.Maui.Controls >= 9.0.82",
       "Microsoft.NET.ILLink.Tasks >= 9.0.1",
       "Supabase >= 1.1.1",
+      "postgrest-csharp >= 3.5.1",
       "supabase-csharp >= 0.16.2"
     ],
     "net9.0-windows10.0.19041": [
       "Microsoft.Extensions.Logging.Debug >= 9.0.5",
       "Microsoft.Maui.Controls >= 9.0.82",
       "Supabase >= 1.1.1",
+      "postgrest-csharp >= 3.5.1",
       "supabase-csharp >= 0.16.2"
     ]
   },
@@ -36623,6 +36627,10 @@
             "target": "Package",
             "version": "[1.1.1, )"
           },
+          "postgrest-csharp": {
+            "target": "Package",
+            "version": "[3.5.1, )"
+          },
           "supabase-csharp": {
             "target": "Package",
             "version": "[0.16.2, )"
@@ -36675,6 +36683,10 @@
           "Supabase": {
             "target": "Package",
             "version": "[1.1.1, )"
+          },
+          "postgrest-csharp": {
+            "target": "Package",
+            "version": "[3.5.1, )"
           },
           "supabase-csharp": {
             "target": "Package",
@@ -36729,6 +36741,10 @@
             "target": "Package",
             "version": "[1.1.1, )"
           },
+          "postgrest-csharp": {
+            "target": "Package",
+            "version": "[3.5.1, )"
+          },
           "supabase-csharp": {
             "target": "Package",
             "version": "[0.16.2, )"
@@ -36776,6 +36792,10 @@
           "Supabase": {
             "target": "Package",
             "version": "[1.1.1, )"
+          },
+          "postgrest-csharp": {
+            "target": "Package",
+            "version": "[3.5.1, )"
           },
           "supabase-csharp": {
             "target": "Package",

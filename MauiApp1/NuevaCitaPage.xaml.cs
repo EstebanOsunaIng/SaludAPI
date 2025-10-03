@@ -1,29 +1,33 @@
-using SaludAPI.Models;
-using SaludAPI.Services;
+using MauiApp1.Models;
+using MauiApp1.Services;
 
-namespace SaludAPI;
-
-public partial class NuevaCitaPage : ContentPage
+namespace MauiApp1
 {
-    private SupabaseService _service;
-
-    public NuevaCitaPage()
+    public partial class NuevaCitaPage : ContentPage
     {
-        InitializeComponent();
-        _service = new SupabaseService();
-    }
+        private readonly SupabaseService _supabaseService;
 
-    private async void OnGuardarClicked(object sender, EventArgs e)
-    {
-        var cita = new Cita
+        public NuevaCitaPage()
         {
-            Paciente = PacienteEntry.Text,
-            Fecha = FechaPicker.Date,
-            Motivo = MotivoEntry.Text
-        };
+            InitializeComponent();
+            _supabaseService = new SupabaseService();
+        }
 
-        await _service.AddCitaAsync(cita);
-        await DisplayAlert("Éxito", "Cita registrada", "OK");
-        await Navigation.PopAsync();
+        private async void OnGuardarClicked(object sender, EventArgs e)
+        {
+            var cita = new Cita
+            {
+                Id = Guid.NewGuid(),
+                Paciente = PacienteEntry.Text,
+                Doctor = DoctorEntry.Text,
+                Fecha = FechaPicker.Date,
+                Hora = HoraPicker.Time,
+                Motivo = MotivoEntry.Text
+            };
+
+            await _supabaseService.InsertarCitaAsync(cita);
+            await DisplayAlert("Éxito", "Cita guardada correctamente", "OK");
+            await Navigation.PopAsync(); // volver atrás
+        }
     }
 }

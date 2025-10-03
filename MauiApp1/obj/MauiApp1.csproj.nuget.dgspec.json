@@ -85,6 +85,10 @@
               "target": "Package",
               "version": "[1.1.1, )"
             },
+            "postgrest-csharp": {
+              "target": "Package",
+              "version": "[3.5.1, )"
+            },
             "supabase-csharp": {
               "target": "Package",
               "version": "[0.16.2, )"
@@ -137,6 +141,10 @@
             "Supabase": {
               "target": "Package",
               "version": "[1.1.1, )"
+            },
+            "postgrest-csharp": {
+              "target": "Package",
+              "version": "[3.5.1, )"
             },
             "supabase-csharp": {
               "target": "Package",
@@ -191,6 +199,10 @@
               "target": "Package",
               "version": "[1.1.1, )"
             },
+            "postgrest-csharp": {
+              "target": "Package",
+              "version": "[3.5.1, )"
+            },
             "supabase-csharp": {
               "target": "Package",
               "version": "[0.16.2, )"
@@ -238,6 +250,10 @@
             "Supabase": {
               "target": "Package",
               "version": "[1.1.1, )"
+            },
+            "postgrest-csharp": {
+              "target": "Package",
+              "version": "[3.5.1, )"
             },
             "supabase-csharp": {
               "target": "Package",

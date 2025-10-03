@@ -1,26 +1,31 @@
-using SaludAPI.Models;
 using Supabase;
-using System.Threading.Tasks;
-using System.Collections.Generic;
+using Supabase.Postgrest;
+using MauiApp1.Models;
 
-namespace SaludAPI.Services
+namespace MauiApp1.Services
 {
     public class SupabaseService
     {
-        private readonly Client _client;
+        private readonly Supabase.Client _client;
 
         public SupabaseService()
         {
-            _client = new Client("https://urafaskxxxpxyhqhhsvr.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVyYWZhc2t4eHhweHlocWhoc3ZyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk1MDkzMTgsImV4cCI6MjA3NTA4NTMxOH0.4_GEtl8HvzID1Igtli10NKtpxmpeXjkWImivNYA9XCM");
+            var url = "https://urafaskxxxpxyhqhhsvr.supabase.co"; // 🔴 cámbialo
+            var key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVyYWZhc2t4eHhweHlocWhoc3ZyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk1MDkzMTgsImV4cCI6MjA3NTA4NTMxOH0.4_GEtl8HvzID1Igtli10NKtpxmpeXjkWImivNYA9XCM"; // 🔴 cámbialo
+
+            _client = new Supabase.Client(url, key, new SupabaseOptions
+            {
+                AutoConnectRealtime = true
+            });
         }
 
-        public async Task<List<Cita>> GetCitasAsync()
+        public async Task<List<Cita>> ObtenerCitasAsync()
         {
             var response = await _client.From<Cita>().Get();
             return response.Models;
         }
 
-        public async Task AddCitaAsync(Cita cita)
+        public async Task InsertarCitaAsync(Cita cita)
         {
             await _client.From<Cita>().Insert(cita);
         }

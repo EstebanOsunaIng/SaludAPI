@@ -2,22 +2,31 @@
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
+    private int _count = 0;
 
-	public MainPage()
-	{
-		InitializeComponent();
-	}
+    public MainPage()
+    {
+        InitializeComponent();
+        UpdateCounter();
+    }
 
-	private void OnCounterClicked(object? sender, EventArgs e)
-	{
-		count++;
+    private void OnCounterClicked(object sender, EventArgs e)
+    {
+        _count++;
+        UpdateCounter();
 
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
+        // Opcional: Mostrar alerta
+        if (_count % 5 == 0)
+        {
+            DisplayAlert("SaludAPI", $"Has hecho click {_count} veces!", "OK");
+        }
+    }
 
-		SemanticScreenReader.Announce(CounterBtn.Text);
-	}
+    private void UpdateCounter()
+    {
+        CounterBtn.Text = _count == 0 ? "Click aquí" : $"Clickeado {_count} veces";
+        
+        // Actualizar el título de la página
+        Title = $"SaludAPI - Contador: {_count}";
+    }
 }

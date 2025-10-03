@@ -1,13 +1,13 @@
-﻿namespace SaludAPI;
-
-public partial class AppShell : Shell
+﻿namespace MauiApp1
 {
-    public AppShell()
+    public partial class AppShell : Shell
     {
-        InitializeComponent();
-
-        // Registrar rutas para navegación
-        Routing.RegisterRoute(nameof(NuevaCitaPage), typeof(NuevaCitaPage));
-        Routing.RegisterRoute(nameof(CitasPage), typeof(CitasPage));
+        public AppShell()
+        {
+            InitializeComponent();
+            Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
+            Routing.RegisterRoute(nameof(CitasPage), typeof(CitasPage));
+            Routing.RegisterRoute(nameof(NuevaCitaPage), typeof(NuevaCitaPage));
+        }
     }
 }

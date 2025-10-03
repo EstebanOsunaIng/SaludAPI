@@ -1,16 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Shell
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="SaludAPI.AppShell">
+    xmlns:local="clr-namespace:MauiApp1"
+    x:Class="MauiApp1.AppShell">
 
-    <!-- Menú de navegación lateral o inferior -->
+    <!-- Menú lateral o pestañas -->
     <FlyoutItem Title="Inicio" Icon="home.png">
-        <ShellContent Title="Inicio" ContentTemplate="{DataTemplate local:MainPage}" />
+        <ShellContent Route="MainPage" ContentTemplate="{DataTemplate local:MainPage}" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Citas" Icon="calendar.png">
-        <ShellContent Title="Lista de Citas" ContentTemplate="{DataTemplate local:CitasPage}" />
+    <FlyoutItem Title="Citas" Icon="list.png">
+        <ShellContent Route="CitasPage" ContentTemplate="{DataTemplate local:CitasPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Nueva Cita" Icon="add.png">
+        <ShellContent Route="NuevaCitaPage" ContentTemplate="{DataTemplate local:NuevaCitaPage}" />
     </FlyoutItem>
 
 </Shell>
