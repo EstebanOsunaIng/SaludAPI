@@ -5,7 +5,6 @@
     xmlns:local="clr-namespace:MauiApp1"
     x:Class="MauiApp1.AppShell">
 
-    <!-- Menú lateral o pestañas -->
     <FlyoutItem Title="Inicio" Icon="home.png">
         <ShellContent Route="MainPage" ContentTemplate="{DataTemplate local:MainPage}" />
     </FlyoutItem>
@@ -16,6 +15,11 @@
 
     <FlyoutItem Title="Nueva Cita" Icon="add.png">
         <ShellContent Route="NuevaCitaPage" ContentTemplate="{DataTemplate local:NuevaCitaPage}" />
+    </FlyoutItem>
+
+    <!-- ✅ Agregar Pacientes -->
+    <FlyoutItem Title="Pacientes" Icon="list.png">
+        <ShellContent Route="PacientesPage" ContentTemplate="{DataTemplate local:PacientesPage}" />
     </FlyoutItem>
 
 </Shell>

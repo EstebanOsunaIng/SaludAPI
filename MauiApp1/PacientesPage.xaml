@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:MauiApp1.Models"
+             x:Class="MauiApp1.PacientesPage"
+             Title="Pacientes"
+             BackgroundColor="#F5F7FA">
+    
+    <Grid Padding="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" 
+                BackgroundColor="#2563EB"
+                StrokeThickness="0"
+                StrokeShape="RoundRectangle 12"
+                Padding="16"
+                Margin="0,0,0,16">
+            <Border.Shadow>
+                <Shadow Brush="Black" Opacity="0.15" Radius="10" Offset="0,4"/>
+            </Border.Shadow>
+            <StackLayout>
+                <Label Text="👥 Lista de Pacientes" 
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       HorizontalOptions="Center"/>
+                <Label Text="Gestiona la información de tus pacientes" 
+                       FontSize="14"
+                       TextColor="#E0E7FF"
+                       HorizontalOptions="Center"
+                       Margin="0,4,0,0"/>
+            </StackLayout>
+        </Border>
+
+        <!-- ListView -->
+        <ListView Grid.Row="1"
+                  x:Name="PacientesListView"
+                  HasUnevenRows="True"
+                  SeparatorVisibility="None"
+                  BackgroundColor="Transparent"
+                  ItemSelected="OnPacienteSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="models:Paciente">
+                    <ViewCell>
+                        <Border BackgroundColor="White"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 16"
+                                Padding="16"
+                                Margin="0,0,0,12">
+                            <Border.Shadow>
+                                <Shadow Brush="Black" Opacity="0.1" Radius="8" Offset="0,2"/>
+                            </Border.Shadow>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Avatar/Inicial -->
+                                <Border Grid.Row="0" 
+                                        Grid.RowSpan="3"
+                                        Grid.Column="0"
+                                        BackgroundColor="#FEE2E2"
+                                        StrokeThickness="0"
+                                        StrokeShape="RoundRectangle 30"
+                                        WidthRequest="60"
+                                        HeightRequest="60"
+                                        VerticalOptions="Center"
+                                        Margin="0,0,12,0">
+                                    <Label Text="{Binding Nombre, StringFormat='{0:0}'}" 
+                                           FontSize="24"
+                                           FontAttributes="Bold"
+                                           TextColor="#EF4444"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center"/>
+                                </Border>
+
+                                <!-- Nombre completo -->
+                                <VerticalStackLayout Grid.Row="0" Grid.Column="1" Spacing="4">
+                                    <Label Text="{Binding NombreCompleto}" 
+                                           FontAttributes="Bold" 
+                                           FontSize="18"
+                                           TextColor="#1E293B"/>
+                                    <HorizontalStackLayout Spacing="6">
+                                        <Label Text="🎂" FontSize="14"/>
+                                        <Label Text="{Binding Edad, StringFormat='{0} años'}" 
+                                               FontSize="13"
+                                               TextColor="#64748B"/>
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+
+                                <!-- Tipo de sangre badge -->
+                                <Border Grid.Row="0"
+                                        Grid.Column="2"
+                                        BackgroundColor="#DBEAFE"
+                                        StrokeThickness="0"
+                                        StrokeShape="RoundRectangle 8"
+                                        Padding="10,6"
+                                        VerticalOptions="Center">
+                                    <Label Text="{Binding TipoSangre}" 
+                                           FontSize="14"
+                                           FontAttributes="Bold"
+                                           TextColor="#1E40AF"
+                                           HorizontalOptions="Center"/>
+                                </Border>
+
+                                <!-- Contacto -->
+                                <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+                                      Margin="0,12,0,0"
+                                      ColumnSpacing="16">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- Teléfono -->
+                                    <HorizontalStackLayout Grid.Column="0" Spacing="6">
+                                        <Label Text="📱" FontSize="16"/>
+                                        <Label Text="{Binding Telefono}" 
+                                               FontSize="13"
+                                               TextColor="#64748B"
+                                               LineBreakMode="TailTruncation"/>
+                                    </HorizontalStackLayout>
+
+                                    <!-- Email -->
+                                    <HorizontalStackLayout Grid.Column="1" Spacing="6">
+                                        <Label Text="✉️" FontSize="16"/>
+                                        <Label Text="{Binding Email}" 
+                                               FontSize="13"
+                                               TextColor="#64748B"
+                                               LineBreakMode="TailTruncation"/>
+                                    </HorizontalStackLayout>
+                                </Grid>
+
+                                <!-- Dirección -->
+                                <Border Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
+                                        BackgroundColor="#F8FAFC"
+                                        StrokeThickness="0"
+                                        StrokeShape="RoundRectangle 8"
+                                        Padding="10"
+                                        Margin="0,8,0,0">
+                                    <HorizontalStackLayout Spacing="6">
+                                        <Label Text="📍" FontSize="14"/>
+                                        <Label Text="{Binding Direccion}" 
+                                               FontSize="12"
+                                               TextColor="#475569"
+                                               LineBreakMode="WordWrap"
+                                               MaxLines="2"/>
+                                    </HorizontalStackLayout>
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!-- Mensaje cuando no hay pacientes -->
+        <VerticalStackLayout Grid.Row="1"
+                             IsVisible="False"
+                             x:Name="EmptyStateLayout"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                             Spacing="16">
+            <Label Text="👥" 
+                   FontSize="64"
+                   HorizontalOptions="Center"/>
+            <Label Text="No hay pacientes registrados" 
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="#64748B"
+                   HorizontalOptions="Center"/>
+            <Label Text="Agrega un nuevo paciente para comenzar" 
+                   FontSize="14"
+                   TextColor="#94A3B8"
+                   HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+
+        <!-- Botón flotante para agregar paciente -->
+        <Border Grid.Row="2"
+                BackgroundColor="#EF4444"
+                StrokeThickness="0"
+                StrokeShape="RoundRectangle 12"
+                Padding="0"
+                Margin="0,16,0,0">
+            <Border.Shadow>
+                <Shadow Brush="#EF4444" Opacity="0.3" Radius="10" Offset="0,4"/>
+            </Border.Shadow>
+            <Button Text="➕ Agregar Nuevo Paciente"
+                    Clicked="OnAgregarPacienteClicked"
+                    BackgroundColor="Transparent"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    HeightRequest="54"/>
+        </Border>
+    </Grid>
+</ContentPage>
