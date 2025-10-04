@@ -1,17 +1,214 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.NuevaCitaPage"
-             Title="Nueva Cita">
+             Title="Nueva Cita"
+             BackgroundColor="#F5F7FA">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
-            <Entry x:Name="PacienteEntry" Placeholder="Nombre del Paciente" />
-            <Entry x:Name="DoctorEntry" Placeholder="Nombre del Doctor" />
-            <DatePicker x:Name="FechaPicker" />
-            <TimePicker x:Name="HoraPicker" />
-            <Entry x:Name="MotivoEntry" Placeholder="Motivo de la cita" />
+        <VerticalStackLayout Padding="20" Spacing="24">
 
-            <Button Text="Guardar" Clicked="OnGuardarClicked"/>
+            <!-- Header -->
+            <Border BackgroundColor="#2563EB"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 16"
+                    Padding="20"
+                    Margin="0,0,0,8">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Opacity="0.15" Radius="10" Offset="0,4"/>
+                </Border.Shadow>
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="📋" 
+                           FontSize="40"
+                           HorizontalOptions="Center"/>
+                    <Label Text="Registrar Nueva Cita"
+                           FontSize="24"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           TextColor="White"/>
+                    <Label Text="Complete los datos del paciente"
+                           FontSize="14"
+                           HorizontalOptions="Center"
+                           TextColor="#E0E7FF"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Card del formulario -->
+            <Border BackgroundColor="White"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 16"
+                    Padding="20">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Opacity="0.1" Radius="8" Offset="0,2"/>
+                </Border.Shadow>
+                
+                <VerticalStackLayout Spacing="20">
+
+                    <!-- Paciente -->
+                    <VerticalStackLayout Spacing="8">
+                        <HorizontalStackLayout Spacing="6">
+                            <Label Text="👤" FontSize="18"/>
+                            <Label Text="Paciente" 
+                                   FontSize="14"
+                                   FontAttributes="Bold"
+                                   TextColor="#334155"/>
+                        </HorizontalStackLayout>
+                        <Border BackgroundColor="#F8FAFC"
+                                Stroke="#CBD5E1" 
+                                StrokeThickness="1" 
+                                StrokeShape="RoundRectangle 12" 
+                                Padding="12">
+                            <Entry x:Name="PacienteEntry" 
+                                   Placeholder="Ingrese el nombre del paciente" 
+                                   PlaceholderColor="#94A3B8"
+                                   TextColor="#1E293B"
+                                   FontSize="15"
+                                   BackgroundColor="Transparent"/>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- Doctor -->
+                    <VerticalStackLayout Spacing="8">
+                        <HorizontalStackLayout Spacing="6">
+                            <Label Text="🩺" FontSize="18"/>
+                            <Label Text="Doctor" 
+                                   FontSize="14"
+                                   FontAttributes="Bold"
+                                   TextColor="#334155"/>
+                        </HorizontalStackLayout>
+                        <Border BackgroundColor="#F8FAFC"
+                                Stroke="#CBD5E1" 
+                                StrokeThickness="1" 
+                                StrokeShape="RoundRectangle 12" 
+                                Padding="12">
+                            <Entry x:Name="DoctorEntry" 
+                                   Placeholder="Ingrese el nombre del doctor" 
+                                   PlaceholderColor="#94A3B8"
+                                   TextColor="#1E293B"
+                                   FontSize="15"
+                                   BackgroundColor="Transparent"/>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- Fecha y Hora en Grid -->
+                    <Grid ColumnSpacing="12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Fecha -->
+                        <VerticalStackLayout Grid.Column="0" Spacing="8">
+                            <HorizontalStackLayout Spacing="6">
+                                <Label Text="📅" FontSize="18"/>
+                                <Label Text="Fecha" 
+                                       FontSize="14"
+                                       FontAttributes="Bold"
+                                       TextColor="#334155"/>
+                            </HorizontalStackLayout>
+                            <Border BackgroundColor="#FEF3C7"
+                                    Stroke="#FDE68A" 
+                                    StrokeThickness="1" 
+                                    StrokeShape="RoundRectangle 12" 
+                                    Padding="12">
+                                <DatePicker x:Name="FechaPicker" 
+                                            TextColor="#92400E"
+                                            FontSize="14"
+                                            FontAttributes="Bold"
+                                            BackgroundColor="Transparent"/>
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <!-- Hora -->
+                        <VerticalStackLayout Grid.Column="1" Spacing="8">
+                            <HorizontalStackLayout Spacing="6">
+                                <Label Text="🕐" FontSize="18"/>
+                                <Label Text="Hora" 
+                                       FontSize="14"
+                                       FontAttributes="Bold"
+                                       TextColor="#334155"/>
+                            </HorizontalStackLayout>
+                            <Border BackgroundColor="#D1FAE5"
+                                    Stroke="#A7F3D0" 
+                                    StrokeThickness="1" 
+                                    StrokeShape="RoundRectangle 12" 
+                                    Padding="12">
+                                <TimePicker x:Name="HoraPicker" 
+                                            TextColor="#065F46"
+                                            FontSize="14"
+                                            FontAttributes="Bold"
+                                            BackgroundColor="Transparent"/>
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <!-- Motivo -->
+                    <VerticalStackLayout Spacing="8">
+                        <HorizontalStackLayout Spacing="6">
+                            <Label Text="📝" FontSize="18"/>
+                            <Label Text="Motivo de la Consulta" 
+                                   FontSize="14"
+                                   FontAttributes="Bold"
+                                   TextColor="#334155"/>
+                        </HorizontalStackLayout>
+                        <Border BackgroundColor="#F8FAFC"
+                                Stroke="#CBD5E1" 
+                                StrokeThickness="1" 
+                                StrokeShape="RoundRectangle 12" 
+                                Padding="12">
+                            <Editor x:Name="MotivoEntry" 
+                                    Placeholder="Describa el motivo de la consulta médica..."
+                                    PlaceholderColor="#94A3B8"
+                                    TextColor="#1E293B"
+                                    FontSize="15"
+                                    HeightRequest="100"
+                                    AutoSize="TextChanges"
+                                    BackgroundColor="Transparent"/>
+                        </Border>
+                    </VerticalStackLayout>
+
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Botones -->
+            <VerticalStackLayout Spacing="12">
+                <!-- Botón Guardar -->
+                <Border BackgroundColor="#2563EB"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 12"
+                        Padding="0">
+                    <Border.Shadow>
+                        <Shadow Brush="#2563EB" Opacity="0.3" Radius="10" Offset="0,4"/>
+                    </Border.Shadow>
+                    <Button Text="💾 Guardar Cita"
+                            Clicked="OnGuardarClicked"
+                            BackgroundColor="Transparent"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            HeightRequest="54"/>
+                </Border>
+
+                <!-- Botón Cancelar (Opcional - Eliminar si no se necesita) -->
+                <!--
+                <Border BackgroundColor="White"
+                        Stroke="#E2E8F0"
+                        StrokeThickness="2"
+                        StrokeShape="RoundRectangle 12"
+                        Padding="0">
+                    <Button Text="❌ Cancelar"
+                            Clicked="OnCancelarClicked"
+                            BackgroundColor="Transparent"
+                            TextColor="#64748B"
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            HeightRequest="54"/>
+                </Border>
+                -->
+            </VerticalStackLayout>
+
+            <!-- Espaciado inferior -->
+            <BoxView HeightRequest="20" Color="Transparent"/>
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

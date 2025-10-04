@@ -2,32 +2,310 @@
 <ContentPage x:Class="MauiApp1.MainPage"
              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             Title="Salud API">
+             Title="SaludAPI">
+
+    <!-- Degradado de fondo -->
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#1E3A8A" Offset="0.0" />
+            <GradientStop Color="#2563EB" Offset="0.5" />
+            <GradientStop Color="#3B82F6" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
 
     <ScrollView>
-        <VerticalStackLayout Spacing="25" Padding="30,0" VerticalOptions="Center">
-            
-            <Label x:Name="WelcomeLabel"
-                Text="Bienvenido a SaludAPI"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
+        <Grid Padding="20" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-            <Label x:Name="DescriptionLabel"
-                Text="Sistema de gestión de pacientes"
-                SemanticProperties.HeadingLevel="Level2"
-                FontSize="18"
-                HorizontalOptions="Center" />
+            <!-- Sección superior: Logo y bienvenida -->
+            <VerticalStackLayout Grid.Row="0" 
+                                 VerticalOptions="End" 
+                                 Spacing="20"
+                                 Padding="20">
+                
+                <!-- Icono principal -->
+                <Border BackgroundColor="White"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 80"
+                        WidthRequest="140"
+                        HeightRequest="140"
+                        HorizontalOptions="Center">
+                    <Border.Shadow>
+                        <Shadow Brush="Black" Opacity="0.3" Radius="20" Offset="0,8"/>
+                    </Border.Shadow>
+                    <Label Text="⚕️" 
+                           FontSize="70"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+                </Border>
 
-            <Button 
-                x:Name="CounterBtn"
-                Text="Click aquí"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center"
-                BackgroundColor="{StaticResource Primary}"
-                TextColor="White" />
+                <!-- Título principal -->
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="SaludAPI"
+                           FontSize="42"
+                           FontAttributes="Bold"
+                           TextColor="White"
+                           HorizontalOptions="Center"/>
+                    
+                    <Label Text="Sistema de Gestión Médica"
+                           FontSize="16"
+                           TextColor="#E0E7FF"
+                           HorizontalOptions="Center"/>
+                </VerticalStackLayout>
 
-        </VerticalStackLayout>
+            </VerticalStackLayout>
+
+            <!-- Sección central: Tarjetas de funciones -->
+            <VerticalStackLayout Grid.Row="1" 
+                                 Spacing="16"
+                                 Padding="20,30">
+
+                <!-- Tarjeta: Gestionar Citas -->
+                <Border BackgroundColor="White"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 20"
+                        Padding="0">
+                    <Border.Shadow>
+                        <Shadow Brush="Black" Opacity="0.2" Radius="15" Offset="0,5"/>
+                    </Border.Shadow>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCitasClicked"/>
+                    </Border.GestureRecognizers>
+                    
+                    <Grid Padding="20" ColumnSpacing="15">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Icono -->
+                        <Border Grid.Column="0"
+                                BackgroundColor="#DBEAFE"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 15"
+                                WidthRequest="60"
+                                HeightRequest="60"
+                                VerticalOptions="Center">
+                            <Label Text="📅" 
+                                   FontSize="30"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                        </Border>
+
+                        <!-- Texto -->
+                        <VerticalStackLayout Grid.Column="1" 
+                                           VerticalOptions="Center"
+                                           Spacing="4">
+                            <Label Text="Gestionar Citas"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="#1E293B"/>
+                            <Label Text="Ver y programar citas médicas"
+                                   FontSize="13"
+                                   TextColor="#64748B"/>
+                        </VerticalStackLayout>
+
+                        <!-- Flecha -->
+                        <Label Grid.Column="2"
+                               Text="›"
+                               FontSize="30"
+                               TextColor="#94A3B8"
+                               VerticalOptions="Center"/>
+                    </Grid>
+                </Border>
+
+                <!-- Tarjeta: Pacientes -->
+                <Border BackgroundColor="White"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 20"
+                        Padding="0">
+                    <Border.Shadow>
+                        <Shadow Brush="Black" Opacity="0.2" Radius="15" Offset="0,5"/>
+                    </Border.Shadow>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnPacientesClicked"/>
+                    </Border.GestureRecognizers>
+                    
+                    <Grid Padding="20" ColumnSpacing="15">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Icono -->
+                        <Border Grid.Column="0"
+                                BackgroundColor="#FEE2E2"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 15"
+                                WidthRequest="60"
+                                HeightRequest="60"
+                                VerticalOptions="Center">
+                            <Label Text="👥" 
+                                   FontSize="30"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                        </Border>
+
+                        <!-- Texto -->
+                        <VerticalStackLayout Grid.Column="1" 
+                                           VerticalOptions="Center"
+                                           Spacing="4">
+                            <Label Text="Pacientes"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="#1E293B"/>
+                            <Label Text="Administrar información de pacientes"
+                                   FontSize="13"
+                                   TextColor="#64748B"/>
+                        </VerticalStackLayout>
+
+                        <!-- Flecha -->
+                        <Label Grid.Column="2"
+                               Text="›"
+                               FontSize="30"
+                               TextColor="#94A3B8"
+                               VerticalOptions="Center"/>
+                    </Grid>
+                </Border>
+
+                <!-- Tarjeta: Historiales Médicos -->
+                <Border BackgroundColor="White"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 20"
+                        Padding="0">
+                    <Border.Shadow>
+                        <Shadow Brush="Black" Opacity="0.2" Radius="15" Offset="0,5"/>
+                    </Border.Shadow>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnHistorialesClicked"/>
+                    </Border.GestureRecognizers>
+                    
+                    <Grid Padding="20" ColumnSpacing="15">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Icono -->
+                        <Border Grid.Column="0"
+                                BackgroundColor="#D1FAE5"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 15"
+                                WidthRequest="60"
+                                HeightRequest="60"
+                                VerticalOptions="Center">
+                            <Label Text="📋" 
+                                   FontSize="30"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                        </Border>
+
+                        <!-- Texto -->
+                        <VerticalStackLayout Grid.Column="1" 
+                                           VerticalOptions="Center"
+                                           Spacing="4">
+                            <Label Text="Historiales Médicos"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="#1E293B"/>
+                            <Label Text="Consultar registros médicos"
+                                   FontSize="13"
+                                   TextColor="#64748B"/>
+                        </VerticalStackLayout>
+
+                        <!-- Flecha -->
+                        <Label Grid.Column="2"
+                               Text="›"
+                               FontSize="30"
+                               TextColor="#94A3B8"
+                               VerticalOptions="Center"/>
+                    </Grid>
+                </Border>
+
+                <!-- Tarjeta: Estadísticas -->
+                <Border BackgroundColor="White"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 20"
+                        Padding="0">
+                    <Border.Shadow>
+                        <Shadow Brush="Black" Opacity="0.2" Radius="15" Offset="0,5"/>
+                    </Border.Shadow>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnEstadisticasClicked"/>
+                    </Border.GestureRecognizers>
+                    
+                    <Grid Padding="20" ColumnSpacing="15">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Icono -->
+                        <Border Grid.Column="0"
+                                BackgroundColor="#FEF3C7"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 15"
+                                WidthRequest="60"
+                                HeightRequest="60"
+                                VerticalOptions="Center">
+                            <Label Text="📊" 
+                                   FontSize="30"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                        </Border>
+
+                        <!-- Texto -->
+                        <VerticalStackLayout Grid.Column="1" 
+                                           VerticalOptions="Center"
+                                           Spacing="4">
+                            <Label Text="Estadísticas"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="#1E293B"/>
+                            <Label Text="Ver reportes y análisis"
+                                   FontSize="13"
+                                   TextColor="#64748B"/>
+                        </VerticalStackLayout>
+
+                        <!-- Flecha -->
+                        <Label Grid.Column="2"
+                               Text="›"
+                               FontSize="30"
+                               TextColor="#94A3B8"
+                               VerticalOptions="Center"/>
+                    </Grid>
+                </Border>
+
+            </VerticalStackLayout>
+
+            <!-- Sección inferior: Información adicional -->
+            <VerticalStackLayout Grid.Row="2" 
+                                 VerticalOptions="End"
+                                 Padding="20"
+                                 Spacing="8">
+                
+                <Label Text="v1.0.0"
+                       FontSize="12"
+                       TextColor="#E0E7FF"
+                       HorizontalOptions="Center"
+                       Opacity="0.7"/>
+                
+                <Label Text="© 2025 SaludAPI - Todos los derechos reservados"
+                       FontSize="11"
+                       TextColor="#E0E7FF"
+                       HorizontalOptions="Center"
+                       Opacity="0.6"/>
+            </VerticalStackLayout>
+
+        </Grid>
     </ScrollView>
 
 </ContentPage>

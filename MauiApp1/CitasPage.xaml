@@ -2,15 +2,198 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:MauiApp1.Models"
              x:Class="MauiApp1.CitasPage"
-             Title="Citas">
-    <StackLayout Padding="20">
-        <ListView x:Name="CitasListView">
+             Title="Citas"
+             BackgroundColor="#F5F7FA">
+    
+    <Grid Padding="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" 
+                BackgroundColor="#2563EB"
+                StrokeThickness="0"
+                StrokeShape="RoundRectangle 12"
+                Padding="16"
+                Margin="0,0,0,16">
+            <Border.Shadow>
+                <Shadow Brush="Black" Opacity="0.15" Radius="10" Offset="0,4"/>
+            </Border.Shadow>
+            <StackLayout>
+                <Label Text="📅 Mis Citas Médicas" 
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       HorizontalOptions="Center"/>
+                <Label Text="Gestiona tus próximas consultas" 
+                       FontSize="14"
+                       TextColor="#E0E7FF"
+                       HorizontalOptions="Center"
+                       Margin="0,4,0,0"/>
+            </StackLayout>
+        </Border>
+
+        <!-- ListView -->
+        <ListView Grid.Row="1"
+                  x:Name="CitasListView"
+                  HasUnevenRows="True"
+                  SeparatorVisibility="None"
+                  BackgroundColor="Transparent">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="models:Cita">
-                    <TextCell Text="{Binding Paciente}" 
-                              Detail="{Binding Motivo}" />
+                    <ViewCell>
+                        <Border BackgroundColor="White"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 16"
+                                Padding="16"
+                                Margin="0,0,0,12">
+                            <Border.Shadow>
+                                <Shadow Brush="Black" Opacity="0.1" Radius="8" Offset="0,2"/>
+                            </Border.Shadow>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Barra lateral de color -->
+                                <BoxView Grid.Row="0" 
+                                         Grid.RowSpan="4"
+                                         Grid.Column="0"
+                                         BackgroundColor="#2563EB"
+                                         WidthRequest="4"
+                                         CornerRadius="2"
+                                         Margin="0,0,12,0"/>
+
+                                <!-- Paciente -->
+                                <HorizontalStackLayout Grid.Row="0" Grid.Column="1" Spacing="8">
+                                    <Label Text="👤" FontSize="20"/>
+                                    <Label Text="{Binding Paciente}" 
+                                           FontAttributes="Bold" 
+                                           FontSize="20"
+                                           TextColor="#1E293B"
+                                           VerticalOptions="Center"/>
+                                </HorizontalStackLayout>
+
+                                <!-- Doctor -->
+                                <HorizontalStackLayout Grid.Row="1" Grid.Column="1" 
+                                                       Spacing="8" 
+                                                       Margin="0,12,0,0">
+                                    <Border BackgroundColor="#DBEAFE" 
+                                            StrokeThickness="0"
+                                            StrokeShape="RoundRectangle 8" 
+                                            Padding="8,4">
+                                        <Label Text="🩺" FontSize="16"/>
+                                    </Border>
+                                    <VerticalStackLayout VerticalOptions="Center">
+                                        <Label Text="Doctor" 
+                                               FontSize="12"
+                                               TextColor="#64748B"/>
+                                        <Label Text="{Binding Doctor}" 
+                                               FontSize="15"
+                                               FontAttributes="Bold"
+                                               TextColor="#334155"/>
+                                    </VerticalStackLayout>
+                                </HorizontalStackLayout>
+
+                                <!-- Fecha y Hora -->
+                                <Grid Grid.Row="2" Grid.Column="1" 
+                                      ColumnSpacing="12"
+                                      Margin="0,12,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- Fecha -->
+                                    <Border Grid.Column="0"
+                                            BackgroundColor="#FEF3C7"
+                                            StrokeThickness="0"
+                                            StrokeShape="RoundRectangle 12"
+                                            Padding="12,8">
+                                        <VerticalStackLayout Spacing="2">
+                                            <Label Text="📅" 
+                                                   FontSize="18"
+                                                   HorizontalOptions="Center"/>
+                                            <Label Text="{Binding Fecha, StringFormat='{0:dd/MM/yyyy}'}" 
+                                                   FontSize="14"
+                                                   FontAttributes="Bold"
+                                                   TextColor="#92400E"
+                                                   HorizontalOptions="Center"/>
+                                        </VerticalStackLayout>
+                                    </Border>
+
+                                    <!-- Hora -->
+                                    <Border Grid.Column="1"
+                                            BackgroundColor="#D1FAE5"
+                                            StrokeThickness="0"
+                                            StrokeShape="RoundRectangle 12"
+                                            Padding="12,8">
+                                        <VerticalStackLayout Spacing="2">
+                                            <Label Text="🕐" 
+                                                   FontSize="18"
+                                                   HorizontalOptions="Center"/>
+                                            <Label Text="{Binding Hora, StringFormat='{0:hh\\:mm}'}" 
+                                                   FontSize="14"
+                                                   FontAttributes="Bold"
+                                                   TextColor="#065F46"
+                                                   HorizontalOptions="Center"/>
+                                        </VerticalStackLayout>
+                                    </Border>
+                                </Grid>
+
+                                <!-- Motivo -->
+                                <Border Grid.Row="3" Grid.Column="1"
+                                        BackgroundColor="#F1F5F9"
+                                        StrokeThickness="0"
+                                        StrokeShape="RoundRectangle 12"
+                                        Padding="12"
+                                        Margin="0,12,0,0">
+                                    <VerticalStackLayout Spacing="4">
+                                        <Label Text="📋 Motivo de consulta" 
+                                               FontSize="12"
+                                               FontAttributes="Bold"
+                                               TextColor="#475569"/>
+                                        <Label Text="{Binding Motivo}" 
+                                               FontSize="14"
+                                               TextColor="#1E293B"
+                                               LineBreakMode="WordWrap"/>
+                                    </VerticalStackLayout>
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </StackLayout>
+
+        <!-- Mensaje cuando no hay citas -->
+        <VerticalStackLayout Grid.Row="1"
+                             IsVisible="False"
+                             x:Name="EmptyStateLayout"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                             Spacing="16">
+            <Label Text="📋" 
+                   FontSize="64"
+                   HorizontalOptions="Center"/>
+            <Label Text="No hay citas programadas" 
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="#64748B"
+                   HorizontalOptions="Center"/>
+            <Label Text="Agrega una nueva cita para comenzar" 
+                   FontSize="14"
+                   TextColor="#94A3B8"
+                   HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+    </Grid>
 </ContentPage>

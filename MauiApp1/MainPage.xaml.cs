@@ -2,31 +2,38 @@
 
 public partial class MainPage : ContentPage
 {
-    private int _count = 0;
-
     public MainPage()
     {
         InitializeComponent();
-        UpdateCounter();
     }
 
-    private void OnCounterClicked(object sender, EventArgs e)
+    private async void OnCitasClicked(object sender, EventArgs e)
     {
-        _count++;
-        UpdateCounter();
-
-        // Opcional: Mostrar alerta
-        if (_count % 5 == 0)
-        {
-            DisplayAlert("SaludAPI", $"Has hecho click {_count} veces!", "OK");
-        }
+        // Navegar a la página de citas
+        await Navigation.PushAsync(new CitasPage());
     }
 
-    private void UpdateCounter()
+    private async void OnPacientesClicked(object sender, EventArgs e)
     {
-        CounterBtn.Text = _count == 0 ? "Click aquí" : $"Clickeado {_count} veces";
-        
-        // Actualizar el título de la página
-        Title = $"SaludAPI - Contador: {_count}";
+        // Navegar a la página de pacientes (cuando la tengas)
+        await DisplayAlert("Pacientes", "Función en desarrollo", "OK");
+        // Descomentar cuando tengas la página:
+        // await Navigation.PushAsync(new PacientesPage());
+    }
+
+    private async void OnHistorialesClicked(object sender, EventArgs e)
+    {
+        // Navegar a la página de historiales (cuando la tengas)
+        await DisplayAlert("Historiales", "Función en desarrollo", "OK");
+        // Descomentar cuando tengas la página:
+        // await Navigation.PushAsync(new HistorialesPage());
+    }
+
+    private async void OnEstadisticasClicked(object sender, EventArgs e)
+    {
+        // Navegar a estadísticas (cuando la tengas)
+        await DisplayAlert("Estadísticas", "Función en desarrollo", "OK");
+        // Descomentar cuando tengas la página:
+        // await Navigation.PushAsync(new EstadisticasPage());
     }
 }
